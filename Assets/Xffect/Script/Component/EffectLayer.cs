@@ -256,6 +256,7 @@ public class EffectLayer : MonoBehaviour
     public float LineLengthLeft = -1f;
     public float LineLengthRight = 1f;
     public int MaxENodes = 1;
+    public float PreWarmTime = 0;
     public bool IsNodeLifeLoop = true;
     public float NodeLifeMin = 1;
     public float NodeLifeMax = 1;
@@ -697,9 +698,23 @@ public class EffectLayer : MonoBehaviour
         emitter = new Emitter(this);
         
         mStopped = false;
+
+         
     }
 
-
+    public void doPreWarm()
+    {
+        Debug.Log("prewarm");
+        if (PreWarmTime != 0)
+        {
+            int nms = (int)(PreWarmTime * 1000);
+            for (int i = 0; i < nms; i += 20)
+            {
+                float f1 = 20.0f / 1000.0f;
+                FixedUpdateCustom(f1);
+            }
+        }
+    }
     public VertexPool GetVertexPool()
     {
         return Vertexpool;
@@ -803,6 +818,8 @@ public class EffectLayer : MonoBehaviour
     
     public void Reset()
     {
+
+        Debug.Log("reset");
         if (ActiveENodes == null)
             return;
         for (int i = 0; i < MaxENodes; i++)
@@ -817,6 +834,8 @@ public class EffectLayer : MonoBehaviour
         emitter.Reset();
         
         mStopped = false;
+
+        doPreWarm();
     }
 
     public void FixedUpdateCustom(float deltaTime)
