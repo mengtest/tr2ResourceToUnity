@@ -277,7 +277,7 @@ public class XffectComponent : MonoBehaviour
         }
 #endif
         float deltaTime = (float)(CurTime - LastTime);
-        
+         
         //simple method to check game delay: the game must run above 20 FPS.
         if (deltaTime > 0.05f)
         {
@@ -288,7 +288,8 @@ public class XffectComponent : MonoBehaviour
             deltaTime *= Time.timeScale;
 		
         ElapsedTime += deltaTime;
-		
+
+         
 		for (int i = 0; i < EflList.Count; i++)
 		{
 			if (EflList[i] == null)//be destroyed?

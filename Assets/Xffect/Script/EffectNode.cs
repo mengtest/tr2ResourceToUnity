@@ -64,8 +64,11 @@ namespace Xft
         public Vector2 Scale;
         public float RotateAngle;
         public Color Color;
-  
-        
+
+
+        //曲线插值表
+        public Dictionary<string, float> LerpTable=new Dictionary<string, float>(); 
+
         public XffectComponent SubEmitter = null;
         
         //reset

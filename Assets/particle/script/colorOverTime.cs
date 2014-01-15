@@ -33,10 +33,10 @@ public class colorOverTime : MonoBehaviour {
             float pos = (nalive % m_duration) / (float)m_duration;
             Color c1 = m_gradient.Evaluate(pos);
 
-            Debug.Log(p1.color);
+   //         Debug.Log(p1.color);
             p1.color = c1;
             p1.color = Color.black;
-            Debug.Log(p1.color);
+     //       Debug.Log(p1.color);
         }
         m_ps.SetParticles(ps,n1); 
         

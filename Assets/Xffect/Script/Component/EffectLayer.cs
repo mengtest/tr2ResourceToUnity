@@ -191,6 +191,8 @@ public class EffectLayer : MonoBehaviour
     public float ScaleCurveTime = 1f;
     public float MaxScaleCalue = 1f;
     public AnimationCurve ScaleXCurveNew = new AnimationCurve(new Keyframe(0, 1), new Keyframe(1, 1));
+    public AnimationCurve ScaleXCurveNewMax = new AnimationCurve(new Keyframe(0, 1), new Keyframe(1, 1));
+    public bool DoubleCurve = false; 
     public AnimationCurve ScaleYCurveNew = new AnimationCurve(new Keyframe(0, 1), new Keyframe(1, 1));
     
     public bool UseSameScaleCurve = false;
@@ -840,6 +842,7 @@ public class EffectLayer : MonoBehaviour
 
     public void FixedUpdateCustom(float deltaTime)
     {
+         
 #if UNITY_EDITOR
         if (UseSubEmitters && !EditorApplication.isPlaying)
         {
@@ -856,6 +859,7 @@ public class EffectLayer : MonoBehaviour
         }
         
         int needToAdd = emitter.GetNodes(deltaTime);
+         
         AddNodes(needToAdd);
         for (int i = 0; i < MaxENodes; i++)
         {

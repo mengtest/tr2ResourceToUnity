@@ -251,6 +251,7 @@ namespace Xft
             : base(node, AFFECTORTYPE.ScaleAffector)
         {
             SType = type;
+            node.LerpTable["scale"] = Random.Range(0, 1.0f);
         }
 
         public ScaleAffector(float x, float y, EffectNode node)
@@ -347,9 +348,21 @@ namespace Xft
                 if (Node.Owner.UseSameScaleCurve)
                 {
                     float curs = Node.Owner.ScaleXCurveNew.Evaluate(t);
-                    curs *= Node.Owner.MaxScaleCalue;
-                    Node.Scale.x = curs;
-                    Node.Scale.y = curs;
+                    float f1 = curs;
+                    if (Node.Owner.DoubleCurve)
+                    {
+                        float curs1 = Node.Owner.ScaleXCurveNewMax.Evaluate(t);
+                        f1 = Mathf.Lerp(Mathf.Min(curs, curs1), Mathf.Max(curs, curs1),Node.LerpTable["scale"]);
+                    }
+                    
+//                     float curs1 = Node.Owner.ScaleXCurveNewMax.Evaluate(t);
+// 
+//                     float f1 = Random.Range(Mathf.Min(curs, curs1), Mathf.Max(curs, curs1));
+                     
+                    
+                    f1 *= Node.Owner.MaxScaleCalue;
+                    Node.Scale.x = f1;
+                    Node.Scale.y = f1;
                 }
                 else
                 {

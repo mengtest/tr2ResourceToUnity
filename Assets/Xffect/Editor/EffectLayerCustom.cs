@@ -231,7 +231,9 @@ public class EffectLayerCustom : Editor
 	
     protected SerializedProperty ScaleWrapMode;
     protected SerializedProperty ScaleCurveTime;
+    protected SerializedProperty DoubleCurve;
     protected SerializedProperty ScaleXCurveNew;
+    protected SerializedProperty ScaleXCurveNewMax; 
     protected SerializedProperty ScaleYCurveNew;
     protected SerializedProperty MaxScaleCalue;
     
@@ -573,6 +575,8 @@ public class EffectLayerCustom : Editor
         ScaleCurveTime = serializedObject.FindProperty("ScaleCurveTime");
         MaxScaleCalue = serializedObject.FindProperty("MaxScaleCalue");
         ScaleXCurveNew = serializedObject.FindProperty("ScaleXCurveNew");
+        ScaleXCurveNewMax = serializedObject.FindProperty("ScaleXCurveNewMax");
+        DoubleCurve = serializedObject.FindProperty("DoubleCurve");
         ScaleYCurveNew = serializedObject.FindProperty("ScaleYCurveNew");
         
         RotateSpeedMin = serializedObject.FindProperty("RotateSpeedMin");
@@ -897,7 +901,9 @@ public class EffectLayerCustom : Editor
             XEditor.DrawFloat("max value:","indicate the max value of the curve here",MaxScaleCalue);
             if (sameCurve)
             {
+                XEditor.DrawToggle("double curve","",DoubleCurve);
                 XEditor.DrawCurve01("scaleXY curve:","",ScaleXCurveNew);
+                XEditor.DrawCurve01("scaleXY curve2:", "", ScaleXCurveNewMax); 
             }
             else
             {

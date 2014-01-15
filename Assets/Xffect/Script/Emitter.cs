@@ -205,6 +205,8 @@ namespace Xft
         public Vector3 GetEmitRotation(EffectNode node)
         {
             Vector3 ret = Vector3.zero;
+
+
             //Set Direction:
             if (Layer.DirType == DIRECTION_TYPE.Sphere)
             {
@@ -223,6 +225,7 @@ namespace Xft
             }
             else if (Layer.DirType == DIRECTION_TYPE.Cone)
             {
+
                 //if emit uniform circle, the rotation should be spread from the center.
                 if (Layer.EmitType == (int)EMITTYPE.CIRCLE && Layer.EmitUniform)
                 {
@@ -233,6 +236,7 @@ namespace Xft
                         dir = node.Position - Layer.EmitPoint;
                     
                     int coneAngle = Layer.AngleAroundAxis;
+
                     if (Layer.UseRandomDirAngle)
                     {
                         coneAngle = Random.Range(Layer.AngleAroundAxis,Layer.AngleAroundAxisMax);
@@ -244,8 +248,15 @@ namespace Xft
                 }
                 else
                 {
+
+                    int coneAngle = Layer.AngleAroundAxis;
+                    if (Layer.UseRandomDirAngle)
+                    {
+                        coneAngle = Random.Range(Layer.AngleAroundAxis, Layer.AngleAroundAxisMax);
+                    }
+
                     //first, rotate y around z 30 degrees
-                    Quaternion rotY = Quaternion.Euler(0, 0, Layer.AngleAroundAxis);
+                    Quaternion rotY = Quaternion.Euler(0, 0, coneAngle);
                     //second, rotate around y 360 random dir;
                     Quaternion rotAround = Quaternion.Euler(0, Random.Range(0, 360), 0);
                     //last, rotate the dir to OriVelocityAxis
