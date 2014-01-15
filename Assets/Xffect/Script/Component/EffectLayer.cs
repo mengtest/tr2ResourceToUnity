@@ -288,6 +288,8 @@ public class EffectLayer : MonoBehaviour
     
     public DIRECTION_TYPE DirType = DIRECTION_TYPE.Planar;
     public Transform DirCenter;
+    public int AngelOffSphere;
+    
     public Vector3 OriVelocityAxis;
     public int AngleAroundAxis;
     public bool UseRandomDirAngle = false;

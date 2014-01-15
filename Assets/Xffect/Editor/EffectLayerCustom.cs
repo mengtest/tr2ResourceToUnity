@@ -98,6 +98,7 @@ public class EffectLayerCustom : Editor
     
 	protected SerializedProperty DirType;
     protected SerializedProperty DirCenter;
+    protected SerializedProperty AngelOffSphere;  
     protected SerializedProperty OriVelocityAxis;
     protected SerializedProperty AngleAroundAxis;
     protected SerializedProperty OriSpeed; string TOriSpeed = "give each node a original speed, the velocity direction is the 'direction type' that you set.";
@@ -451,6 +452,9 @@ public class EffectLayerCustom : Editor
 		
 		DirType = serializedObject.FindProperty("DirType");
 		DirCenter = serializedObject.FindProperty("DirCenter");
+
+        AngelOffSphere = serializedObject.FindProperty("AngelOffSphere");
+
 		OriVelocityAxis = serializedObject.FindProperty("OriVelocityAxis");
 		AngleAroundAxis = serializedObject.FindProperty("AngleAroundAxis");
 		OriSpeed = serializedObject.FindProperty("OriSpeed");
@@ -1273,6 +1277,7 @@ public class EffectLayerCustom : Editor
 		else if ((DIRECTION_TYPE)DirType.enumValueIndex == DIRECTION_TYPE.Sphere)
 		{
 			XEditor.DrawTransform("direction center:","",DirCenter);
+            XEditor.DrawInt("todo:","",AngelOffSphere);
 		}
 		else if ((DIRECTION_TYPE)DirType.enumValueIndex == DIRECTION_TYPE.Cone)
 		{
@@ -1291,6 +1296,7 @@ public class EffectLayerCustom : Editor
 		{
 			XEditor.DrawVector3Field("cylindrical axis:","",OriVelocityAxis);
 			XEditor.DrawTransform("direction center:","",DirCenter);
+            
 		}
 		
 		XEditor.DrawToggle("inherit client rotation?",TAlwaysSyncRotation,AlwaysSyncRotation);
