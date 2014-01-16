@@ -73,7 +73,10 @@ namespace Xft
         
         //reset
         protected List<Affector> AffectorList;
-        protected Vector3 OriDirection;
+
+        //现在也作为可以
+        public Vector3 OriDirection;
+
         protected float LifeTime;
         protected int OriRotateAngle;
         protected float OriScaleX;
@@ -392,6 +395,18 @@ namespace Xft
             Remove();
         }
 
+        public void recalRotation(bool syncClient)
+        {
+            if(syncClient)
+            {
+                if (Owner.DirType != DIRECTION_TYPE.Sphere)
+                    Sprite.SetRotationTo(Owner.transform.rotation * OriDirection);
+            }
+            else
+            {
+                Sprite.SetRotationTo(OriDirection);
+            }
+        }
         public void UpdateSprite(float deltaTime)
         {
             //added 2012.7.6
@@ -400,6 +415,7 @@ namespace Xft
                 if (Owner.DirType != DIRECTION_TYPE.Sphere)
                     Sprite.SetRotationTo(Owner.transform.rotation * OriDirection);
             }
+             
 
             Sprite.SetScale(Scale.x * OriScaleX, Scale.y * OriScaleY);
             if (Owner.ColorAffectorEnable)

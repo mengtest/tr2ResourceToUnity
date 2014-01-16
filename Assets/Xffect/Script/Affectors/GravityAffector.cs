@@ -47,6 +47,16 @@ namespace Xft
 
         public override void Update(float deltaTime)
         {
+//             //新加功能:先转向,再
+//             if (Node.Owner.SpriteType == (int)STYPE.BILLBOARD_SELF)
+//             {
+//                // Vector3.MoveTowards(Node.OriDirection,GravityObj.position-Node.Position,);
+//                 Vector3.RotateTowards()
+//             }
+
+
+            Vector3 gDir = Node.OriDirection; 
+            //
             float strength = 0f;
 
             if (MType == MAGTYPE.Fixed)
@@ -57,15 +67,20 @@ namespace Xft
             if (GType == GAFTTYPE.Planar)
             {
                 Vector3 syncDir = Node.Owner.ClientTransform.rotation * Dir;
+                gDir = syncDir;
+
                 if (IsAccelerate)
                     Node.Velocity += syncDir * strength * deltaTime;
                 else
                     Node.Position += syncDir * strength * deltaTime;
+                 
             }
             else if (GType == GAFTTYPE.Spherical)
             {
                 Vector3 dir;
                 dir = GravityObj.position - Node.GetOriginalPos();
+                gDir = dir;
+
                 if (IsAccelerate)
                     Node.Velocity += dir * strength * deltaTime;
                 else
@@ -73,6 +88,19 @@ namespace Xft
                     Node.Position += dir.normalized * strength * deltaTime;
                 }  
             }
+
+            if (Node.Owner.ChangeDirectionStrength != 0.0f)
+            {
+                //修正sprite的direction 
+                if (strength < 0)
+                {
+                    gDir = -gDir;
+                }
+                Node.OriDirection = Vector3.RotateTowards(Node.OriDirection, gDir, Mathf.Abs(strength) * Node.Owner.ChangeDirectionStrength, 0.0f);
+                Node.recalRotation(false); 
+            }
+             
+
         }
     }
 }

@@ -119,7 +119,7 @@ public class EffectLayerCustom : Editor
     protected SerializedProperty GravityDirection;
     protected SerializedProperty GravityObject;
     protected SerializedProperty IsGravityAccelerate; string TIsGravityAccelerate = "if check on this option, the gravity force will be added to the node's velocity, or, the force will directly change the node's position. e.g, if you want every node be attracted by gravity object, but there has other modifiers on each node, you should uncheck this option to make each node close to garavity object without other influences.";
-	
+    protected SerializedProperty ChangeDirectionStrength; 
 	
 	//Bomb Affector
     protected SerializedProperty BombAffectorEnable;
@@ -474,7 +474,8 @@ public class EffectLayerCustom : Editor
 		GravityDirection = serializedObject.FindProperty("GravityDirection");
 		GravityObject = serializedObject.FindProperty("GravityObject");
 		IsGravityAccelerate = serializedObject.FindProperty("IsGravityAccelerate");
-		
+        ChangeDirectionStrength = serializedObject.FindProperty("ChangeDirectionStrength");
+
 		BombAffectorEnable = serializedObject.FindProperty("BombAffectorEnable");
 		BombObject = serializedObject.FindProperty("BombObject");
 		BombType = serializedObject.FindProperty("BombType");
@@ -1237,6 +1238,9 @@ public class EffectLayerCustom : Editor
         EditorGUILayout.LabelField("gravity type:",XLabelField,GUILayout.Width(XEditorTool.LabelWidth));
         GravityAftType.enumValueIndex = (int)(GAFTTYPE)EditorGUILayout.EnumPopup((GAFTTYPE)GravityAftType.enumValueIndex);
         EditorGUILayout.EndHorizontal();
+
+        XEditor.DrawFloat("change direction strength","change sprite direction to gravity",ChangeDirectionStrength);
+
 		XEditor.DrawTransform("gravity object:","",GravityObject);
 		
 		if ((GAFTTYPE)GravityAftType.enumValueIndex == GAFTTYPE.Planar)

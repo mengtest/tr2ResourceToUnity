@@ -347,6 +347,8 @@ public class EffectLayer : MonoBehaviour
     public Vector3 GravityDirection = Vector3.up;
     public Transform GravityObject;
     public bool IsGravityAccelerate = true;
+    public float ChangeDirectionStrength;
+
 
     //AirField Affector
     public bool AirAffectorEnable = false;
@@ -708,7 +710,7 @@ public class EffectLayer : MonoBehaviour
 
     public void doPreWarm()
     {
-        Debug.Log("prewarm");
+  //      Debug.Log("prewarm");
         if (PreWarmTime != 0)
         {
             int nms = (int)(PreWarmTime * 1000);
@@ -823,7 +825,7 @@ public class EffectLayer : MonoBehaviour
     public void Reset()
     {
 
-        Debug.Log("reset");
+  //      Debug.Log("reset");
         if (ActiveENodes == null)
             return;
         for (int i = 0; i < MaxENodes; i++)
