@@ -600,7 +600,7 @@ namespace Xft
 
             LastWorldPos = CurWorldPos;
 
-            if (ElapsedTime > LifeTime && LifeTime > 0)
+            if (ElapsedTime > LifeTime && LifeTime > 0&&Owner.NotExpired==false)
             {
                 Reset();
                 Remove();

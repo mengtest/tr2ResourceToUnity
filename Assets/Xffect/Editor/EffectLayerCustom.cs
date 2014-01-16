@@ -76,6 +76,7 @@ public class EffectLayerCustom : Editor
     protected SerializedProperty LineLengthLeft;
     protected SerializedProperty LineLengthRight;
     protected SerializedProperty PreWarmTime;//emit time before active
+    protected SerializedProperty NotExpired;
     protected SerializedProperty MaxENodes; string TMaxENodes = "the maximum nodes the emitter can emit.";
     protected SerializedProperty IsNodeLifeLoop; string TIsNodeLifeLoop = "if check this option, then each node's life is infinite.";
     protected SerializedProperty NodeLifeMin;
@@ -432,6 +433,7 @@ public class EffectLayerCustom : Editor
 		LineLengthRight = serializedObject.FindProperty("LineLengthRight");
 		MaxENodes = serializedObject.FindProperty("MaxENodes");
         PreWarmTime = serializedObject.FindProperty("PreWarmTime");
+        NotExpired = serializedObject.FindProperty("NotExpired");
 		IsNodeLifeLoop = serializedObject.FindProperty("IsNodeLifeLoop");
 		NodeLifeMin = serializedObject.FindProperty("NodeLifeMin");
 		NodeLifeMax = serializedObject.FindProperty("NodeLifeMax");
@@ -1380,6 +1382,7 @@ public class EffectLayerCustom : Editor
 		
 		XEditor.DrawInt("max nodes:", TMaxENodes,MaxENodes);
         XEditor.DrawFloat("pre warm", "prewarm time before active", PreWarmTime);
+        XEditor.DrawToggle("no expiration", "resurrect", NotExpired);
 		XEditor.DrawToggle("is node life infinite?", TIsNodeLifeLoop,IsNodeLifeLoop);
 		if (!IsNodeLifeLoop.boolValue)
 		{

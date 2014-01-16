@@ -259,6 +259,7 @@ public class EffectLayer : MonoBehaviour
     public float LineLengthRight = 1f;
     public int MaxENodes = 1;
     public float PreWarmTime = 0;
+    public bool NotExpired = false;
     public bool IsNodeLifeLoop = true;
     public float NodeLifeMin = 1;
     public float NodeLifeMax = 1;
