@@ -165,7 +165,7 @@ public class EffectLayer : MonoBehaviour
     public AnimationCurve RotateCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(1, 360));
     
     public WRAP_TYPE RotateCurveWrap;
-    public float RotateCurveTime = 1f;
+    public float RotateCurveTime = -1f;
     public float RotateCurveMaxValue = 1f;
     public AnimationCurve RotateCurve01 = new AnimationCurve(new Keyframe(0, 0), new Keyframe(1, 1));
     
@@ -188,7 +188,7 @@ public class EffectLayer : MonoBehaviour
     public AnimationCurve ScaleYCurve = new AnimationCurve(new Keyframe(0, 1), new Keyframe(1, 5));
     
     public WRAP_TYPE ScaleWrapMode;
-    public float ScaleCurveTime = 1f;
+    public float ScaleCurveTime = -1f;
     public float MaxScaleCalue = 1f;
     public AnimationCurve ScaleXCurveNew = new AnimationCurve(new Keyframe(0, 1), new Keyframe(1, 1));
     public AnimationCurve ScaleXCurveNewMax = new AnimationCurve(new Keyframe(0, 1), new Keyframe(1, 1));
@@ -203,7 +203,7 @@ public class EffectLayer : MonoBehaviour
     //Color Config
     public bool ColorAffectorEnable = false;
     /*deprecated*/public int ColorAffectType = 0;
-    public float ColorGradualTimeLength = 1f;
+    public float ColorGradualTimeLength = -1f;
     public COLOR_GRADUAL_TYPE ColorGradualType = COLOR_GRADUAL_TYPE.CLAMP;
 	public Color Color1 = Color.white;
     /*deprecated*/public Color Color2;
@@ -257,7 +257,7 @@ public class EffectLayer : MonoBehaviour
     public bool EmitUniform = false;
     public float LineLengthLeft = -1f;
     public float LineLengthRight = 1f;
-    public int MaxENodes = 1;
+    public int MaxENodes = 100;
     public float PreWarmTime = 0;
     public bool NotExpired = false;
     public bool IsNodeLifeLoop = true;
@@ -408,7 +408,7 @@ public class EffectLayer : MonoBehaviour
     public int Cols = 1;
     public int Rows = 1;
     public int LoopCircles = -1;
-    public float UVTime = 1;
+    public float UVTime = -1;
     /*deprecated*/public string EanPath = "none";
     /*deprecated*/public int EanIndex = 0;
     public bool RandomStartFrame = false;
